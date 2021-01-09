@@ -325,6 +325,7 @@ public class Board extends JPanel implements ActionListener {
                     spaceship.setImage(ii.getImage());
                     spaceship.setVisible(false);
                     bomb.setDestroyed(true);
+                    ingame = false;
                 }
             }
         }
