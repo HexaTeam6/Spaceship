@@ -8,10 +8,13 @@ public abstract class SpaceShip extends Sprite {
 
     protected int dx;
     protected int dy;
+    protected int moveSpeed;
+    protected boolean canShoot;
     private List<Missile> missiles;
 
     public SpaceShip(int x, int y) {
         super(x, y);
+        canShoot = true;
 
         initCraft();
     }
@@ -41,11 +44,63 @@ public abstract class SpaceShip extends Sprite {
         return missiles;
     }
 
-    public abstract void keyPressed(KeyEvent e);
-
     public void fire() {
         missiles.add(new Missile(x + width, y + height / 2));
     }
 
-    public abstract void keyReleased(KeyEvent e);
+    protected void enableShoot() { }
+
+    protected void disableShoot() { }
+
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_SPACE) {
+            if (canShoot)
+            {
+                fire();
+                disableShoot();
+            }
+        }
+
+        if (key == KeyEvent.VK_LEFT) {
+            dx = -moveSpeed;
+        }
+
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = moveSpeed;
+        }
+
+        if (key == KeyEvent.VK_UP) {
+            dy = -moveSpeed;
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+            dy = moveSpeed;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_SPACE) {
+            enableShoot();
+        }
+
+        if (key == KeyEvent.VK_LEFT) {
+            dx = 0;
+        }
+
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = 0;
+        }
+
+        if (key == KeyEvent.VK_UP) {
+            dy = 0;
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 0;
+        }
+    }
 }

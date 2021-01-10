@@ -26,7 +26,7 @@ public class Board extends JPanel implements ActionListener {
     private final int B_HEIGHT = 300;
     private final int DELAY = 15;
     private int score;
-    private int shipID = 1;
+    private int shipID;
 
     private String explImg = "resources/SpaceInvaders/explosion.png";
 
@@ -42,8 +42,8 @@ public class Board extends JPanel implements ActionListener {
             {820, 128}, {490, 170}, {700, 30}
     };
 
-    public Board() {
-
+    public Board(int spaceshipType) {
+        shipID = spaceshipType;
         initBoard();
     }
 

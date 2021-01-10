@@ -5,14 +5,23 @@ import javax.swing.JFrame;
 
 public class SpaceShipPlay extends JFrame {
 
-    public SpaceShipPlay() {
+    public SpaceShipPlay(String spaceshipTypeString) {
 
-        initUI();
+        initUI(spaceshipTypeString);
     }
 
-    private void initUI() {
+    private void initUI(String spaceshipTypeString) {
 
-        add(new Board());
+        int spaceShipType = 0;
+
+        if (spaceshipTypeString.equals("shooter")) {
+            spaceShipType = 0;
+        }
+        else if (spaceshipTypeString.equals("fast")) {
+            spaceShipType = 1;
+        }
+
+        add(new Board(spaceShipType));
 
         setResizable(false);
         pack();
@@ -25,7 +34,7 @@ public class SpaceShipPlay extends JFrame {
     public static void main(String[] args) {
 
         EventQueue.invokeLater(() -> {
-            SpaceShipPlay ex = new SpaceShipPlay();
+            SpaceShipPlay ex = new SpaceShipPlay(args[0]);
             ex.setVisible(true);
         });
     }
