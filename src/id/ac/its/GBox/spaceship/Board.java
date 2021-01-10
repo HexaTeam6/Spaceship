@@ -26,6 +26,7 @@ public class Board extends JPanel implements ActionListener {
     private final int B_HEIGHT = 300;
     private final int DELAY = 15;
     private int score;
+    private int shipID = 1;
 
     private String explImg = "resources/SpaceInvaders/explosion.png";
 
@@ -56,8 +57,7 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
 
-        spaceship = new ShipFactory().getSpaceShip(1);
-        //spaceship = new ShooterSpaceShip(ICRAFT_X, ICRAFT_Y);
+        spaceship = new ShipFactory().getSpaceShip(shipID);
 
         initAliens();
 
